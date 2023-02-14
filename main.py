@@ -13,9 +13,8 @@ pattern = r"([А-ЯЁа-яё]+) ?([А-ЯЁа-яё]+)? ?([А-ЯЁа-яё]+)?,([А
           r"([А-ЯЁа-яё]*)?,([А-ЯЁа-яё \–\-\w]*)?,((\+?[\d ?]) ?\(?(\d{1,3})\)?\-? ?(\d{1,3})\-?(\d{1,2})\-?(\d{1," \
           r"2})([\(\)А-ЯЁа-яё \.\d]*)?)?,([\w\d\.]+\@[\w]+\.[\w]+)?,?"
 n_contacts = []
-rows = "lastname,firstname,surname,organization,position,phone,email"
-list_rows = rows.split(',')
-n_contacts.append(list_rows)
+
+n_contacts.append(contacts_list[0])
 for contact_data in contacts_list[1:]:
     for contact in contact_data:
         subb = r"\1,\2\4,\3\5\6,\7,\8,+7(\11)\12-\13-\14\15,\16"
