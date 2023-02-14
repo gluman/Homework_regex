@@ -21,7 +21,7 @@ for contact_data in contacts_list[1:]:
         n_data = re.sub(pattern, subb, contact)
         n_cont = n_data.split(',')
         add = True
-        if len(n_contacts) > 0:
+        if len(n_contacts) > 1:
             for i in n_contacts[::-1]:
                 if i[0] == n_cont[0] and i[1] == n_cont[1]:
                     if len(i[3]) <= 1:
