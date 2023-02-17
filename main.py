@@ -15,26 +15,26 @@ pattern = r"([А-ЯЁа-яё]+) ?([А-ЯЁа-яё]+)? ?([А-ЯЁа-яё]+)?,([А
 n_contacts = []
 
 n_contacts.append(contacts_list[0])
-for contact_data in contacts_list[1:]:
-    for contact in contact_data:
-        subb = r"\1,\2\4,\3\5\6,\7,\8,+7(\11)\12-\13-\14\15,\16"
-        n_data = re.sub(pattern, subb, contact)
-        n_cont = n_data.split(',')
-        add = True
-        if len(n_contacts) > 1:
-            for i in n_contacts[::-1]:
-                if i[0] == n_cont[0] and i[1] == n_cont[1]:
-                    if len(i[3]) <= 1:
-                        i[3] = n_cont[3]
-                    if len(i[4]) <= 1:
-                        i[4] = n_cont[4]
-                    if len(i[5]) <= 6:
-                        i[5] = n_cont[5]
-                    if len(i[6]) <= 1:
-                        i[6] = n_cont[6]
-                    add = False
-        if add:
-            n_contacts.append(n_cont)
+for contact_data in contacts_list[1::]:
+    contact = ','.join(contact_data)
+    subb = r"\1,\2\4,\3\5\6,\7,\8,+7(\11)\12-\13-\14\15,\16"
+    n_data = re.sub(pattern, subb, contact)
+    n_cont = n_data.split(',')
+    add = True
+    if len(n_contacts) > 1:
+        for i in n_contacts[::-1]:
+            if i[0] == n_cont[0] and i[1] == n_cont[1]:
+                if len(i[3]) <= 1:
+                    i[3] = n_cont[3]
+                if len(i[4]) <= 1:
+                    i[4] = n_cont[4]
+                if len(i[5]) <= 6:
+                    i[5] = n_cont[5]
+                if len(i[6]) <= 1:
+                    i[6] = n_cont[6]
+                add = False
+    if add:
+        n_contacts.append(n_cont)
 
 
 # TODO 2: сохраните получившиеся данные в другой файл
